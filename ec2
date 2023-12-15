@@ -1,0 +1,16 @@
+provider "aws"
+{
+region = " eu-west-1"
+Access_key=""
+Secret_key=""
+}
+
+Resource "aws_instance" "ec2-1"
+{
+ami-id= ""
+vpc_id = "aws_vpc.vpcname.id"
+
+count =1
+}
+
+'njbhgvbgv
