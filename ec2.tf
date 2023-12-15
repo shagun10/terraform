@@ -19,7 +19,7 @@ resource "aws_subnet" "main" {
 
   count = 3
   tags = {
-    Name = "var.namesub[count.index]"
+    Name = var.namesub[count.index]
   }
 
 }
@@ -52,13 +52,12 @@ resource "aws_security_group" "allow_tls" {
 }
 
 resource "aws_instance" "web" {
+  count = 3
   ami           = "ami-0f0e333655f014f4f"
   instance_type = "t3.micro"
   vpc_security_group_ids = aws_security_group.allow_tls.id
   subnet_id = aws_subnet.main[count.index].id
-
-  Count = 3
   tags = {
-    Name = "var.nameec2[count.index]"
+    Name = var.nameec2[count.index]
   }
 }
